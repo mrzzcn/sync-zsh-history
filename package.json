@@ -14,7 +14,10 @@
     "bin": {
         "synczshistory": "index.js"
     },
-    "git": "git@github.com:mrzzcn/sync-zsh-history.git",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/mrzzcn/sync-zsh-history.git"
+    },
     "author": "Jack",
     "license": "ISC"
 }
