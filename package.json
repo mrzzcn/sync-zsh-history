@@ -1,23 +1,23 @@
 {
-    "name": "sync-zsh-history",
-    "version": "1.0.4",
-    "description": "sync .zsh_history using Dropbox(any other cloud storage service)",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "sync",
-        "zsh",
-        ".zsh_history"
-    ],
-    "bin": {
-        "synczshistory": "index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "http://github.com/mrzzcn/sync-zsh-history.git"
-    },
-    "author": "Jack",
-    "license": "ISC"
+  "name": "sync-zsh-history",
+  "version": "1.0.5",
+  "description": "sync .zsh_history using Dropbox(any other cloud storage service)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sync",
+    "zsh",
+    ".zsh_history"
+  ],
+  "bin": {
+    "synczshistory": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mrzzcn/sync-zsh-history.git"
+  },
+  "author": "Jack",
+  "license": "ISC"
 }
