@@ -4,10 +4,22 @@ var path = require('path');
 var fs = require('fs');
 
 var home = process.env.HOME;
-
 var destFile = home + '/.zsh_history';
 
-// process.argv: [node path, file path, arg[0] ]
+// Look for a silent flag
+var verbose = true
+if (process.argv.indexOf('-s') > -1) {
+  verbose = false
+  process.argv.splice(process.argv.indexOf('-s'), 1)
+}
+
+// Path is in process.argv[2]
+if (!process.argv[2]) {
+  console.log('USAGE: sync-zsh-history path/to/second/zsh/history\
+  \nOPTS:  -s  to silent output')
+  process.exit(1)
+}
+
 var syncFile = process.argv[2];
 
 function readFile(path) {
@@ -59,13 +71,16 @@ Promise.all([readFile(home + '/.zsh_history'), readFile(syncFile)])
     var newContent = items.join('');
     writeFile(destFile, newContent).then(function() {
       writeFile(syncFile, newContent);
-      console.log('merge succeed! \nexisted commands '
-        + sourceItems.length
-        + '\nnew commands '
-        + newItems.length
-        + '\nduplicated '
-        + (sourceItems.length + newItems.length - items.length)
-        + '\ntotal ' + items.length);
+
+      if(verbose){
+        console.log('merge succeed! \nexisted commands '
+          + sourceItems.length
+          + '\nnew commands '
+          + newItems.length
+          + '\nduplicated '
+          + (sourceItems.length + newItems.length - items.length)
+          + '\ntotal ' + items.length);
+      }
     });
 
   });
