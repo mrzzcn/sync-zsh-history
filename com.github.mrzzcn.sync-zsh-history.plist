@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.github.mrzzcn.sync-zsh-history.plist</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/usr/local/bin/synczshistory</string>
+      <string>/Users/z/dropbox/.zsh_history</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>20 22</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/z/.log/sync-zsh-history.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/z/.log/sync-zsh-history-error.log</string>
+  </dict>
+</plist>
