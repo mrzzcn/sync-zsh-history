@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#!/usr/local/bin/node
 
 var path = require('path');
 var fs = require('fs');
@@ -11,15 +11,19 @@ var destFile = home + '/.zsh_history';
 var syncFile = process.argv[2];
 
 function readFile(path) {
-  return new Promise(function(resolve, reject) {
-    fs.readFile(path, 'utf8', function(err, data) {
+  return new Promise(function (resolve, reject) {
+    if (!fs.existsSync(path)) {
+      console.warn(path + ' isn\'t exists, creating...')
+      fs.writeFileSync(path, '')
+    }
+    fs.readFile(path, 'utf8', function (err, data) {
       if (err) {
         console.log(err);
         reject(err);
       }
-      resolve(data.split('\n: ').filter(function(command) {
+      resolve(data.split('\n: ').filter(function (command) {
         return command && command.length;
-      }).map(function(command) {
+      }).map(function (command) {
         command = command.replace(/(\\| )$/igm, '');
         if (command.slice(0, 2) !== ': ') {
           return ': ' + command + '\n';
@@ -32,8 +36,8 @@ function readFile(path) {
 }
 
 function writeFile(path, content) {
-  return new Promise(function(resolve, reject) {
-    fs.writeFile(path, content, 'utf8', function(err) {
+  return new Promise(function (resolve, reject) {
+    fs.writeFile(path, content, 'utf8', function (err) {
       if (err) {
         reject(err);
       } else {
@@ -48,7 +52,7 @@ function onlyUnique(value, index, self) {
 }
 
 Promise.all([readFile(home + '/.zsh_history'), readFile(syncFile)])
-  .then(function(values) {
+  .then(function (values) {
     var sourceItems = values[0];
     var newItems = values[1];
     var items = [];
@@ -57,7 +61,7 @@ Promise.all([readFile(home + '/.zsh_history'), readFile(syncFile)])
     items = items.filter(onlyUnique).sort();
 
     var newContent = items.join('');
-    writeFile(destFile, newContent).then(function() {
+    writeFile(destFile, newContent).then(function () {
       writeFile(syncFile, newContent);
       console.log('merge succeed! \nexisted commands '
         + sourceItems.length
