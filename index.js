@@ -63,6 +63,7 @@ Promise.all([readFile(home + '/.zsh_history'), readFile(syncFile)])
     var newContent = items.join('');
     writeFile(destFile, newContent).then(function () {
       writeFile(syncFile, newContent);
+      console.log(`\n======== Start ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()} ========`);
       console.log('merge succeed! \nexisted commands '
         + sourceItems.length
         + '\nnew commands '
@@ -70,6 +71,7 @@ Promise.all([readFile(home + '/.zsh_history'), readFile(syncFile)])
         + '\nduplicated '
         + (sourceItems.length + newItems.length - items.length)
         + '\ntotal ' + items.length);
+      console.log('======== End ========');
     });
 
   });
