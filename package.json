@@ -1,6 +1,6 @@
 {
     "name": "sync-zsh-history",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "sync .zsh_history using Dropbox(any other cloud storage service)",
     "main": "index.js",
     "scripts": {
